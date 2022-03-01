@@ -1,4 +1,4 @@
-# VueJsCourseTheoDELAPORTE
+# Vue Js Course Theo DELAPORTE
 - Dossier vue contient la partie 2 de la vidéo avec le code qui a été fait 
 - Fichier directives-methodes-events.html contient le code commenté et expliqué de la première partie
 - Ce readme est une description d'ensemble de Vue.js en lien avec la vidéo et ce que j'ai pu en comprendre
