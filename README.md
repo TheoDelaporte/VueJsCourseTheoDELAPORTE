@@ -25,6 +25,15 @@ Npm start permet de lancer le framework node
 
 Le composant aura un template qui devra passer par différentes étapes avant d’apparaître dans le navigateur.
 Le compilateur Vue permet de lire le modèle d’un composant et le fait passer par des étapes telles que l’analyse, l’optimisation, le codegen et crée finalement une fonction de rendu. Cette fonction de rendu est responsale de la création d’un Vnode qui est utilisé par le processus de correctif du DOM virtuel pour créer le DOM réel.
+
+Template est le rendu que l'on va avoir à la fin
+
+Parser parcours toutes les directives pour se former en un arbre
+
+Optimiser permet de ne pas creer de noeuds lors du processus de création du dom virtuel
+
+CodeGen c'est la création du rendu
+
 ![img template](https://user-images.githubusercontent.com/62428919/156164097-6ca10626-1e90-4d95-ba32-8c9e40bfceb9.png)
 
 Etape d’analyse : analyse les directives similaires aux éléments et rend les directives structurelles telles que v-for, v-if sous forme de paires clé-valeur. La directif v-if sera poussée dans attrsMap en tant qu’objet dynamique
@@ -35,4 +44,7 @@ Observateur : analyse une expression, collecte les abonnées et déclenche un ra
 
 Processus de correction : interagit avec le DOM réel à l’aide du DOM virtuel 
 
+Exemple de dom simple :
+
+![Exemple de DOM](https://fr.vuejs.org/images/dom-tree.png)
 
