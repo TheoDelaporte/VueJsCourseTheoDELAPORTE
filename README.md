@@ -1,6 +1,9 @@
 # VueJsCourseTheoDELAPORTE
+- Dossier vue contient la partie 2 de la vidéo avec le code qui a été fait 
+- Fichier directives-methodes-events.html contient le code commenté et expliqué de la première partie
+- Ce readme est une description d'ensemble de Vue.js
 
-Vue.js
+# Vue.js
 Qu'est-ce que vue.js ?
 Vue.js est un framework pour créer des applications et des sites Web. Le framework fournit de nombreux outils pour créer des sites Web et des applications rapides et dynamiques. Vue.js est un dom virtuel. Virtual Dom crée essentiellement des applications Web JavaScript. Vue.js est un framework très léger (10k gzip). Vue.js est un framework progressif car vous pouvez l'utiliser n'importe où, vous pouvez également ajouter de l'interactivité et l'utiliser comme une sorte d'alternative à jQuery.Il est aussi flexible pour permettre de choisir les outils et autres bibliothèques qu’on veut implémenter ou on peut utiliser la vue fournit par défaut (Vue Ecosystem). 
 Vue.js permet également de mettre à jour les anciennes applications page par page.
@@ -18,8 +21,7 @@ Il y a deux dossiers un public et un src le public peut contenir tout les ressou
 Npm start permet de lancer le framework node
  
 
-2.
-Démystifier les composants interne de vue.js
+# Démystifier les composants interne de vue.js
 
 Le composant aura un template qui devra passer par différentes étapes avant d’apparaître dans le navigateur.
 Le compilateur Vue permet de lire le modèle d’un composant et le fait passer par des étapes telles que l’analyse, l’optimisation, le codegen et crée finalement une fonction de rendu. Cette fonction de rendu est responsale de la création d’un Vnode qui est utilisé par le processus de correctif du DOM virtuel pour créer le DOM réel.
@@ -30,6 +32,7 @@ Etape d’optimisation : permet de ne pas créer de nouveaux nœuds à chaque no
 Etape codeGen: création du rendu 
 Observateur : analyse une expression, collecte les abonnées et déclenche un rappel lorsque la valeur de l’expression change pour chaque composant
 ![Processus de correction](https://user-images.githubusercontent.com/62428919/156164439-07dbab43-5e88-424f-b504-f5e8437feca6.png)
+
 Processus de correction : interagit avec le DOM réel à l’aide du DOM virtuel 
 
 
