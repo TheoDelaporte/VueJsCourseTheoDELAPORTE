@@ -40,9 +40,6 @@ Etape d’analyse : analyse les directives similaires aux éléments et rend les
 Etape d’optimisation : permet de ne pas créer de nouveaux nœuds à chaque nouveau rendu mais ces nœuds seront complètement ignorés lors du processus de correction du DOM virtuel
 Etape codeGen: création du rendu 
 Observateur : analyse une expression, collecte les abonnées et déclenche un rappel lorsque la valeur de l’expression change pour chaque composant
-![Processus de correction](https://user-images.githubusercontent.com/62428919/156164439-07dbab43-5e88-424f-b504-f5e8437feca6.png)
-
-Processus de correction : interagit avec le DOM réel à l’aide du DOM virtuel 
 
 Exemple de dom simple :
 
