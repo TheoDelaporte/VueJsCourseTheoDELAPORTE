@@ -2,14 +2,14 @@
 <html>
   <head>
     <title>Splendid Food</title>
-    <link rel="stylesheet" href="styles/style.min.css">
-    <link rel="icon" href="../public/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="../public/favicon.ico" type="image/ico">
+    <link rel="stylesheet" href="styles/style.min.css" />
+    <link rel="icon" href="../public/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../public/favicon.ico" type="image/ico" />
   </head>
   <body>
-
+    <!-- L'instance Vue j s que je crée ici pourra se connecter
+    et afficher les données et interagir avec tout type d'élément DOM à l'intérieur de cette div ici. -->
     <div id="app">
-
       <header class="top-bar spread">
         <nav class="top-bar-nav">
           <a href="#" class="top-bar-link">
@@ -36,15 +36,17 @@
       </div>
 
       <main class="wrapper">
-
         <h2>Recommended</h2>
 
         <div class="recommended">
-
-          <div v-for="product in inventory.slice(0,3)" :key="product.id" class="card">
-            <div class="card-title">
-              {{ product.name }}
-            </div>
+          <!-- v-for créer une boucle en fonction de la key id du produit -->
+          <div
+            v-for="product in inventory.slice(0,3)"
+            :key="product.id"
+            class="card"
+          >
+            <!-- On va signaler notre variable product.name ici qui contient un champ string dans des doubles accolades ou traduit par {{ tags }}ce qui va dire à vue js de chercher à l'interieur  -->
+            <div class="card-title">{{ product.name }}</div>
             <div class="card-body">
               <i class="icofont-10x icofont-{{ product.icon }}"></i>
               <form>
@@ -60,91 +62,94 @@
                   <div class="cell">
                     <label>Price:</label>
                   </div>
-                  <div class="cell">
-                    ${{ product.price.USD }}
-                  </div>
+                  <div class="cell">${{ product.price.USD }}</div>
                 </div>
                 <div class="row">
                   <div class="cell">
                     <label>Quantity:</label>
                   </div>
                   <div class="cell">
-                    <input type="number" v-model.number="product.quantity">
+                    <input type="number" v-model.number="product.quantity" />
                   </div>
                 </div>
               </form>
             </div>
             <div class="card-footer">
-              <button @click="addToCart(product.name)" class="btn btn-light">
+              <!-- @click est un event qui va déclencher la fonction addToCart de la méthode de la vue -->
+              <button
+                @click="addToCart(product.name, index)"
+                class="btn btn-light"
+              >
                 Add to cart
               </button>
             </div>
           </div>
-
         </div>
-
       </main>
-
-      <sidebar 
-      v-if="showSidebar" 
-      :toggle="toggleSidebar"
-      :cart="cart"
-      :inventory="inventory"
+      <!-- v-if correspond à if basic en javascript prend un booléen (même principe pour v-else-if et v-else)-->
+      <sidebar
+        v-if="showSidebar"
+        :toggle="toggleSidebar"
+        :cart="cart"
+        :inventory="inventory"
       />
 
-      <footer>
-      </footer>
-
+      <footer></footer>
     </div>
-      
+
     <script src="https://unpkg.com/vue@next"></script>
     <script>
       let app = Vue.createApp({
+        // création fonction data qui contient des variable ex : showSideBar
         data() {
           return {
             showSidebar: false,
             inventory: [],
-            cart: {}
-          }
+            cart: {},
+          };
         },
+        // methods contient une fonction add to cart en fonction du nom du produit
         methods: {
           addToCart(name, index) {
-            if (!this.cart[name]) this.cart[name] = 0
-            this.cart[name] += this.inventory[index].quantity
-            console.log(this.cart)
+            console.log(this.inventory);
+            if (!this.cart[name]) this.cart[name] = 0;
+            this.cart[name] += this.inventory[index].quantity;
           },
+          // methods contient une fonction toggleSidebar qui cache ou non notre classe showSideBar
           toggleSidebar() {
-            this.showSidebar = !this.showSidebar
-          }
+            this.showSidebar = !this.showSidebar;
+          },
         },
+        // Faire le lien entre le html et l'application vue, ici grâce à un #id (#app) dans la div
         async mounted() {
-          const res = await fetch('./food.json')
-          const data = await res.json()
-          this.inventory = data
-        }
-      })
-     
-     app.component('sidebar', {
-       props: ['toggle', 'cart', 'inventory'],
-       computed: {
-        
-       },
-       methods: {
-        getPrice(name) {
-          const product = this.inventory.find((product) =>  {
-            return p.name === name
-          })
-          return product.price.USD
+          const res = await fetch("./food.json");
+          const data = await res.json();
+          this.inventory = data;
         },
-        calculateTotal() {
-          const names = Object.values(this.cart)
-          const total = Object.values(this.cart).reduce((acc, curr, index) => {
-            return acc + (curr * this.getPrice(name[index]))
-          })
-          return total
-        }
-       },
-       template: `
+      });
+      // ajout des composants dans le sidebar
+      app.component("sidebar", {
+        props: ["toggle", "cart", "inventory"],
+        computed: {},
+        methods: {
+          getPrice(name) {
+            const product = this.inventory.find((p) => {
+              return p.name === name;
+            });
+            return product.price.USD;
+          },
+          calculateTotal() {
+            const names = Object.values(this.cart);
+            const total = Object.values(this.cart).reduce(
+              (acc, curr, index) => {
+                return acc + curr * this.getPrice(names[index]);
+              }
+            );
+            return total;
+          },
+        },
+        // affichage d'une partie html notament ici le panier de la boutique
+        template: `
        <aside class="cart-container">
         <div class="cart">
           <h1 class="cart-title spread">
@@ -191,10 +196,10 @@
           </div>
         </div>
       </aside>
-       `
-     }) 
-      
-      app.mount('#app')
+       `,
+      });
+
+      app.mount("#app");
     </script>
   </body>
 </html>
